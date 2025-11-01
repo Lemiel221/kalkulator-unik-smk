@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kalkulator Unik SMK</title>
+  <style>
+    /* ==== STYLE KALKULATOR ==== */
+    body {
+      background: linear-gradient(135deg, #3b82f6, #9333ea);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+    }
+
+    .calculator {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      width: 320px;
+      text-align: center;
+    }
+
+    .display {
+      background: rgba(0, 0, 0, 0.2);
+      padding: 15px;
+      border-radius: 10px;
+      font-size: 1.5em;
+      margin-bottom: 15px;
+      overflow-x: auto;
+      text-align: right;
+    }
+
+    button {
+      background-color: rgba(255, 255, 255, 0.15);
+      border: none;
+      border-radius: 10px;
+      font-size: 1.2em;
+      color: #fff;
+      padding: 15px;
+      margin: 5px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      width: 60px;
+    }
+
+    button:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+      transform: scale(1.05);
+    }
+
+    .operator {
+      background-color: #facc15;
+      color: #000;
+    }
+
+    .equal {
+      background-color: #22c55e;
+      color: #fff;
+      width: 135px;
+    }
+
+    .clear {
+      background-color: #ef4444;
+      color: #fff;
+    }
+
+    h2 {
+      margin-bottom: 15px;
+      letter-spacing: 1px;
+    }
+
+    footer {
+      margin-top: 10px;
+      font-size: 0.8em;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <h2>🧮 Kalkulator Unik SMK</h2>
+    <div class="display" id="display">0</div>
+    <div>
+      <button class="clear" onclick="clearDisplay()">C</button>
+      <button onclick="appendValue('(')">(</button>
+      <button onclick="appendValue(')')">)</button>
+      <button class="operator" onclick="appendValue('/')">÷</button>
+    </div>
+    <div>
+      <button onclick="appendValue('7')">7</button>
+      <button onclick="appendValue('8')">8</button>
+      <button onclick="appendValue('9')">9</button>
+      <button class="operator" onclick="appendValue('*')">×</button>
+    </div>
+    <div>
+      <button onclick="appendValue('4')">4</button>
+      <button onclick="appendValue('5')">5</button>
+      <button onclick="appendValue('6')">6</button>
+      <button class="operator" onclick="appendValue('-')">−</button>
+    </div>
+    <div>
+      <button onclick="appendValue('1')">1</button>
+      <button onclick="appendValue('2')">2</button>
+      <button onclick="appendValue('3')">3</button>
+      <button class="operator" onclick="appendValue('+')">+</button>
+    </div>
+    <div>
+      <button onclick="appendValue('0')">0</button>
+      <button onclick="appendValue('.')">.</button>
+      <button class="equal" onclick="calculate()">=</button>
+    </div>
+    <footer>© 2025 | Belajar Web Dasar SMK</footer>
+  </div>
+
+  <script>
+    let display = document.getElementById("display");
+    let currentValue = "";
+
+    function appendValue(value) {
+      if (currentValue === "0") currentValue = "";
+      currentValue += value;
+      display.innerText = currentValue;
+    }
+
+    function clearDisplay() {
+      currentValue = "0";
+      display.innerText = currentValue;
+    }
+
+    function calculate() {
+      try {
+        currentValue = eval(currentValue).toString();
+        display.innerText = currentValue;
+      } catch {
+        display.innerText = "Error!";
+        currentValue = "";
+      }
+    }
+  </script>
+</body>
+</html>
