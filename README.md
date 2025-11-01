@@ -5,6 +5,11 @@ Didesain untuk **siswa SMK** agar bisa belajar dasar-dasar pemrograman web denga
 
 ---
 
+## ✨ Update v1.0.1
+- Fix pada history yang bug.
+
+---
+
 ## ✨ Fitur
 - Desain modern dengan efek *glassmorphism*
 - Responsif dan ringan
