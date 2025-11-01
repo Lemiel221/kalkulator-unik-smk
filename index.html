@@ -164,6 +164,12 @@
     let display = document.getElementById("display");
     let currentValue = "";
     let historyList = document.getElementById("history-list");
+    let historyData = JSON.parse(localStorage.getItem("kalkulatorHistory")) || [];
+
+    // Tampilkan history saat halaman dibuka
+    window.onload = function() {
+      renderHistory();
+    };
 
     function appendValue(value) {
       if (currentValue === "0") currentValue = "";
@@ -191,14 +197,27 @@
     }
 
     function addToHistory(expression, result) {
-      const entry = document.createElement("div");
-      entry.classList.add("history-entry");
-      entry.textContent = `${expression} = ${result}`;
-      historyList.prepend(entry); // menambahkan ke atas seperti di HP
+      const entry = { exp: expression, res: result };
+      historyData.unshift(entry); // Tambah di awal
+      if (historyData.length > 10) historyData.pop(); // Simpan maksimal 10 riwayat
+      localStorage.setItem("kalkulatorHistory", JSON.stringify(historyData));
+      renderHistory();
+    }
+
+    function renderHistory() {
+      historyList.innerHTML = "";
+      historyData.forEach(item => {
+        const entryDiv = document.createElement("div");
+        entryDiv.classList.add("history-entry");
+        entryDiv.textContent = `${item.exp} = ${item.res}`;
+        historyList.appendChild(entryDiv);
+      });
     }
 
     function clearHistory() {
-      historyList.innerHTML = "";
+      historyData = [];
+      localStorage.removeItem("kalkulatorHistory");
+      renderHistory();
     }
   </script>
 </body>
