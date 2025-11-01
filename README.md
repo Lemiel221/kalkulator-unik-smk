@@ -10,6 +10,8 @@ Didesain untuk **siswa SMK** agar bisa belajar dasar-dasar pemrograman web denga
 - Responsif dan ringan
 - Dapat menghitung operasi dasar: `+`, `-`, `×`, `÷`, `()`
 - Tombol interaktif dengan animasi
+- Tombol “🗑️ Hapus Riwayat” untuk mengosongkan history
+- Cocok untuk siswa SMK belajar *front-end web development*
 
 ---
 
