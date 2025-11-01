@@ -80,6 +80,40 @@
       font-size: 0.8em;
       opacity: 0.7;
     }
+
+    /* ==== HISTORY STYLE ==== */
+    .history {
+      margin-top: 15px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 10px;
+      max-height: 120px;
+      overflow-y: auto;
+      text-align: left;
+      font-size: 0.9em;
+    }
+
+    .history-entry {
+      margin: 4px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      padding-bottom: 4px;
+    }
+
+    .clear-history {
+      margin-top: 8px;
+      background-color: #f87171;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 5px 10px;
+      cursor: pointer;
+      font-size: 0.8em;
+      transition: 0.2s;
+    }
+
+    .clear-history:hover {
+      background-color: #dc2626;
+    }
   </style>
 </head>
 <body>
@@ -115,12 +149,21 @@
       <button onclick="appendValue('.')">.</button>
       <button class="equal" onclick="calculate()">=</button>
     </div>
+
+    <!-- HISTORY -->
+    <div class="history" id="history">
+      <strong>Riwayat:</strong>
+      <div id="history-list"></div>
+      <button class="clear-history" onclick="clearHistory()">🗑️ Hapus Riwayat</button>
+    </div>
+
     <footer>© 2025 | Belajar Web Dasar SMK</footer>
   </div>
 
   <script>
     let display = document.getElementById("display");
     let currentValue = "";
+    let historyList = document.getElementById("history-list");
 
     function appendValue(value) {
       if (currentValue === "0") currentValue = "";
@@ -135,12 +178,27 @@
 
     function calculate() {
       try {
-        currentValue = eval(currentValue).toString();
-        display.innerText = currentValue;
+        let result = eval(currentValue);
+        if (result !== undefined) {
+          addToHistory(currentValue, result);
+          currentValue = result.toString();
+          display.innerText = currentValue;
+        }
       } catch {
         display.innerText = "Error!";
         currentValue = "";
       }
+    }
+
+    function addToHistory(expression, result) {
+      const entry = document.createElement("div");
+      entry.classList.add("history-entry");
+      entry.textContent = `${expression} = ${result}`;
+      historyList.prepend(entry); // menambahkan ke atas seperti di HP
+    }
+
+    function clearHistory() {
+      historyList.innerHTML = "";
     }
   </script>
 </body>
