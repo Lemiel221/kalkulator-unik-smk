@@ -23,4 +23,4 @@ Didesain untuk **siswa SMK** agar bisa belajar dasar-dasar pemrograman web denga
 ## 🚀 Cara Menjalankan
 1. Unduh atau *clone* repository ini:
    ```bash
-   git clone https://github.com/username/kalkulator-unik-smk.git
+   git clone https://github.com/lemiel221/kalkulator-unik-smk.git
